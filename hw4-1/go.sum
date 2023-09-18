@@ -1,0 +1,4 @@
+github.com/lzap/deagon v0.0.0-20221108193946-ebbec8ef187f h1:MBhGXJOMUnegFcoKJh3RrxMaWQjUG8diVM/2gfgySh4=
+github.com/lzap/deagon v0.0.0-20221108193946-ebbec8ef187f/go.mod h1:PqwJVV+nJRZVJMvZyFYwV938KeUklpsuSti176pivvE=
+golang.org/x/text v0.4.0 h1:BrVqGRd7+k1DiOgtnFvAkoQEWQvBc25ouMJM6429SFg=
+golang.org/x/text v0.4.0/go.mod h1:mrYo+phRRbMaCq/xk9113O4dZlRixOauAjOtrjsXDZ8=
