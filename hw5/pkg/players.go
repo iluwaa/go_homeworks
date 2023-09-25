@@ -19,7 +19,7 @@ func NewPlayer(symbol string) *Player {
 }
 
 func (player *Player) ChangeTurn() {
-	if player.Turn == true {
+	if player.Turn {
 		player.Turn = false
 	} else {
 		player.Turn = true

@@ -64,7 +64,7 @@ func winnerCheck(board *Board, symbol string) {
 		}
 	}
 
-	if draw == true {
+	if draw {
 		fmt.Println("Draw!")
 	}
 
