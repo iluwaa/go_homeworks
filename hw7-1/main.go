@@ -3,8 +3,6 @@ package main
 import (
 	"fmt"
 	"math/rand"
-	"sync"
-	"time"
 )
 
 /*
@@ -13,78 +11,37 @@ import (
 Третя горутина виводить середнє значення на екран.
 */
 
-type Numbers struct {
-	numbers   []int
-	channelId int
-}
-
 func main() {
-	wg := &sync.WaitGroup{}
-	channels := CreateChannels(3)
+	numbers := make(chan int)
+	output := make(chan string)
 
-	for i, ch := range channels {
-		go GenerateNumbers(ch, i, wg)
-	}
+	go GenerateNumbers(numbers)
 
-	OutoutChannel(channels)
+	go FindAvarage(numbers, output)
 
-	wg.Wait()
+	fmt.Println(<-output)
 
 }
 
-func CreateChannels(count int) []chan Numbers {
-	c := make([]chan Numbers, count)
-	for k := 0; k < count; k++ {
-		c[k] = make(chan Numbers)
+func FindAvarage(in chan int, out chan string) {
+	count := 0
+	var sum float32
+	result := "Generated "
+
+	for number := range in {
+		sum += float32(number)
+		count++
+		result += fmt.Sprintf("%d ", number)
 	}
-	return c
+
+	result += fmt.Sprintf(", sum is %v, count is %d, avarage is %v", sum, count, sum/float32(count))
+	out <- result
 
 }
 
-func GenerateNumbers(c chan Numbers, id int, wg *sync.WaitGroup) {
-	defer wg.Done()
-	wg.Add(1)
-
-	slicesCount := rand.Intn(15-3) + 3
-
-	fmt.Printf("In channel %d will be generated %d slices\n", id, slicesCount)
-
-	for i := 0; i < slicesCount; i++ {
-		numbers := Numbers{make([]int, 0), id}
-
-		for k := 0; k < rand.Intn(10-2)+2; k++ {
-			numbers.numbers = append(numbers.numbers, rand.Intn(100))
-			time.Sleep(time.Duration(rand.Intn(3)) * time.Second)
-		}
-		c <- numbers
+func GenerateNumbers(c chan int) {
+	for i := 0; i < rand.Intn(20-2)+2; i++ {
+		c <- rand.Intn(100-1) + 1
 	}
 	close(c)
-	return
-}
-
-func OutoutChannel(channels []chan Numbers) {
-	output := make(chan Numbers)
-
-	go func() {
-		for _, ch := range channels {
-			go func(ch chan Numbers) {
-				for val := range ch {
-					output <- val
-				}
-			}(ch)
-		}
-	}()
-
-	go func() {
-		for val := range output {
-			sum := 0
-
-			for _, i := range val.numbers {
-				sum += i
-			}
-
-			fmt.Printf("Recieved %v from channel %d, avg = %d\n", val.numbers, val.channelId, sum/len(val.numbers))
-		}
-	}()
-
 }
