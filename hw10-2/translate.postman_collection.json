@@ -1,0 +1,54 @@
+{
+	"info": {
+		"_postman_id": "73c7a4a1-e57e-4b56-b188-f4fd89b560ba",
+		"name": "translate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30602070"
+	},
+	"item": [
+		{
+			"name": "from eng",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"msg\": \"some text\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/translate",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"translate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "from pl",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	]
+}
