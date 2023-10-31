@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "16a177c1-ebec-4444-87c2-b8f6ad0a12ee",
+		"name": "Weather",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30602070"
+	},
+	"item": [
+		{
+			"name": "weather Lviv",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/weather?city=Lviv",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"weather"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "Lviv"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "weather Kyiv",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/weather?city=Kyiv",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"weather"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "Kyiv"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "weather wrong location",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/weather?city=Kyivv",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"weather"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "Kyivv"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "weather without city",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/weather",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"weather"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
